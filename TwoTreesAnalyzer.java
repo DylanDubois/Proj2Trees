@@ -12,9 +12,9 @@ import java.util.function.Function;
  * tree and an AVL tree to empirically compare the performance of these
  * operations on the trees.
  * 
- * @author YOUR NAME
+ * @author Dylan Dubois
  * @SEE AVLTree, AVLTreeException, BSTree, BSTreeException,
- * @since DATE LAST MODIFIED
+ * @since 10-15-20117
  */
 public class TwoTreesAnalyzer {
 	// Define auxiliary/helper method(s) for the main method, if any, here
@@ -38,7 +38,6 @@ public class TwoTreesAnalyzer {
 			bstree.insert(words.get(words.size() - 1));
 			avltree.insert(words.get(words.size() - 1));
 		}
-
 		inFile.close();
 		// VVV Prints table 1 VVV
 		System.out.printf("Table 1: Binary Search Tree [%s]\n" + "Level-Order Traversal\n"
@@ -59,7 +58,6 @@ public class TwoTreesAnalyzer {
 				+ "-----------------------------------------\n" + "BST\t%d\t  %d\t  %d\n" + "AVL\t%d\t  %d\t  %d\n",
 				args[0], bstree.size(), bstree.height(), bstree.diameter(), avltree.size(), avltree.height(),
 				avltree.diameter());
-
 		System.out.println("-----------------------------------------\n");
 		for (int i = 0; i < words.size(); i++) { //searches the trees for each word, totaling their depths
 			bsDepths += 1 + bstree.depth(words.get(i));
@@ -71,6 +69,5 @@ public class TwoTreesAnalyzer {
 				+ "-----------------------------------------\n" + "BST             %d\n" + "AVL             %d\n",
 				args[0], bsDepths, avlDepths);
 		System.out.println("-----------------------------------------\n");
-
 	}
 }

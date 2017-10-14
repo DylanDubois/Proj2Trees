@@ -1,7 +1,6 @@
 package twotreesanalyzer;
 
 import java.util.ArrayDeque;
-import java.util.ArrayList;
 import java.util.Deque;
 import java.util.function.Function;
 
@@ -9,10 +8,10 @@ import java.util.function.Function;
  * A binary search tree <br>
  * Requires JDK 1.8 for Function*
  * 
- * @author Duncan, YOUR NAME
- * @param <E>
- *            the tree data type
- * @since 99-99-9999
+ * @author Duncan, Dylan Dubois
+ * @param <E> 
+ * 			the tree data type
+ * @since 10-15-2017
  * @see BSTreeAPI, BSTreeException
  */
 public class BSTree<E extends Comparable<E>> implements BSTreeAPI<E> {
