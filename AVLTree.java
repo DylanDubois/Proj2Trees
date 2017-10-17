@@ -4,14 +4,13 @@ import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.function.Function;
 
-
 /**
  * Models an AVL tree.
  * 
  * @param <E>
  *            data type of elements of the tree
- * @author William Duncan, YOUR NAME
- * @since 99-99-9999
+ * @author William Duncan, Dylan Dubois
+ * @since 10-16-2017
  * @see AVLTreeAPI, AVLTreeException
  */
 
@@ -213,13 +212,13 @@ public class AVLTree<E extends Comparable<E>> implements AVLTreeAPI<E> {
 		Deque<Node> functions = new ArrayDeque<>();
 		functions.push(root);
 		Node temp = null;
-		while (!functions.isEmpty()){
+		while (!functions.isEmpty()) {
 			temp = functions.getLast();
 			func.apply(temp.data);
-			if (temp.left != null){
+			if (temp.left != null) {
 				functions.push(temp.left);
 			}
-			if (temp.right != null){
+			if (temp.right != null) {
 				functions.push(temp.right);
 			}
 			functions.removeLast();
@@ -648,17 +647,12 @@ public class AVLTree<E extends Comparable<E>> implements AVLTreeAPI<E> {
 	 * @return the height of the subtree rooted at the specified node
 	 */
 	private int height(Node node) {
-		if (node == null)
+		if (root == null)
 			return 0;
-		int leftHeight = 0, rightHeight = 0;
-		if (node.left != null)
-			leftHeight = height(node.left);
-		if (node.right != null)
-			rightHeight = height(node.right);
-		if (leftHeight > rightHeight)
-			return 1 + leftHeight;
-		else
-			return 1 + rightHeight;
+		if (node == null)
+			return -1;
+		int leftHeight = height(node.left), rightHeight = height(node.right);
+		return 1 + Math.max(leftHeight, rightHeight);
 	}
 
 	/**
@@ -674,7 +668,7 @@ public class AVLTree<E extends Comparable<E>> implements AVLTreeAPI<E> {
 			return 0;
 		int leftHeight = height(node.left);
 		int rightHeight = height(node.right);
-		return leftHeight + rightHeight + 1;
+		return leftHeight + rightHeight + 3;
 	}
 	/* END: Augmented Private Auxiliary Methods */
 

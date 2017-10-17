@@ -13,8 +13,11 @@ import java.util.function.Function;
  * operations on the trees.
  * 
  * @author Dylan Dubois
+ * Course 3102.01
+ * Programming Project #2
+ * Instructor: Duncan
  * @SEE AVLTree, AVLTreeException, BSTree, BSTreeException,
- * @since 10-15-20117
+ * @since 10-16-20117
  */
 public class TwoTreesAnalyzer {
 	// Define auxiliary/helper method(s) for the main method, if any, here
@@ -63,7 +66,7 @@ public class TwoTreesAnalyzer {
 			bsDepths += 1 + bstree.depth(words.get(i));
 			avlDepths += 1 + avltree.depth(words.get(i));
 		}
-		// VVV Prints table 4nn VVV
+		// VVV Prints table 4 VVV
 		System.out.printf("Table 4:Total Number of Node Accesses\n" + "Searching for all the Words in [%s]\n"
 				+ "=========================================\n" + "Tree        # Nodes\n"
 				+ "-----------------------------------------\n" + "BST             %d\n" + "AVL             %d\n",

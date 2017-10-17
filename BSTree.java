@@ -9,9 +9,9 @@ import java.util.function.Function;
  * Requires JDK 1.8 for Function*
  * 
  * @author Duncan, Dylan Dubois
- * @param <E> 
- * 			the tree data type
- * @since 10-15-2017
+ * @param <E>
+ *            the tree data type
+ * @since 10-16-2017
  * @see BSTreeAPI, BSTreeException
  */
 public class BSTree<E extends Comparable<E>> implements BSTreeAPI<E> {
@@ -133,18 +133,27 @@ public class BSTree<E extends Comparable<E>> implements BSTreeAPI<E> {
 			return 0;
 		int depth = 0;
 		if (inTree(item)) {
-			depth = 1;
-			Node temp = search(item);
-			while (findParent(temp) != root) {
-				temp = findParent(temp);
-				depth++;
+			depth = 0;
+			Node current = root;
+			int d = 0;
+			while (true) {
+				d = current.data.compareTo(item);
+				if (d == 0)
+					return depth;
+				if (d > 0) {
+					current = current.left;
+					depth++;
+				} else {
+					current = current.right;
+					depth++;
+				}
 			}
-			return depth;
 		} else {
 			depth = -1;
 			Node current = root;
+			int d = 0;
 			while (current != null) {
-				int d = current.data.compareTo(item);
+				d = current.data.compareTo(item);
 				if (d > 0) {
 					current = current.left;
 					depth--;
@@ -318,16 +327,9 @@ public class BSTree<E extends Comparable<E>> implements BSTreeAPI<E> {
 	 */
 	private int height(Node node) {
 		if (node == null)
-			return 0;
-		int leftHeight = 0, rightHeight = 0;
-		if (node.left != null)
-			leftHeight = height(node.left);
-		if (node.right != null)
-			rightHeight = height(node.right);
-		if (leftHeight > rightHeight)
-			return 1 + leftHeight;
-		else
-			return 1 + rightHeight;
+			return -1;
+		int leftHeight = height(node.left), rightHeight = height(node.right);
+		return 1 + Math.max(leftHeight, rightHeight);
 	}
 
 	/**
@@ -341,8 +343,8 @@ public class BSTree<E extends Comparable<E>> implements BSTreeAPI<E> {
 	private int diameter(Node node) {
 		if (node == null)
 			return 0;
-		int leftHeight = height(node.left);
-		int rightHeight = height(node.right);
+		int leftHeight = 1 + height(node.left);
+		int rightHeight = 1 + height(node.right);
 		int leftDiameter = diameter(node.left);
 		int rightDiameter = diameter(node.right);
 		return Math.max(leftHeight + rightHeight + 1, Math.max(leftDiameter, rightDiameter));
